@@ -1,3 +1,4 @@
+import JamEmptyState from "@/components/ui/EmptyState/EmptyState";
 import HeaderGreetings from "@/components/ui/Header/HeaderGreetings";
 import { LinearGradient } from "@/components/ui/LinearGradient/LinearGradient";
 import { FONTS } from "@/lib/customFont/fonts";
@@ -83,53 +84,9 @@ export default function Index() {
           }}
         />
 
+
         <Text style={styles.sectionTitle}>Upcoming Jams</Text>
-        
-        {/* Profile Information Section */}
-        {profile && (
-          <View style={styles.profileSection}>
-            <Text style={styles.sectionTitle}>Profile Information</Text>
-            <View style={styles.profileCard}>
-              <Text style={styles.profileItem}>
-                <Text style={styles.label}>Username: </Text>
-                {profile.username}
-              </Text>
-              {profile.display_name && (
-                <Text style={styles.profileItem}>
-                  <Text style={styles.label}>Display Name: </Text>
-                  {profile.display_name}
-                </Text>
-              )}
-              {profile.full_name && (
-                <Text style={styles.profileItem}>
-                  <Text style={styles.label}>Full Name: </Text>
-                  {profile.full_name}
-                </Text>
-              )}
-              {profile.bio && (
-                <Text style={styles.profileItem}>
-                  <Text style={styles.label}>Bio: </Text>
-                  {profile.bio}
-                </Text>
-              )}
-              {profile.school && (
-                <Text style={styles.profileItem}>
-                  <Text style={styles.label}>School: </Text>
-                  {profile.school}
-                </Text>
-              )}
-              <Text style={styles.profileItem}>
-                <Text style={styles.label}>Jams Joined: </Text>
-                {profile.jams_joined}
-              </Text>
-              <Text style={styles.profileItem}>
-                <Text style={styles.label}>Jams Created: </Text>
-                {profile.jams_created}
-              </Text>
-            </View>
-          </View>
-        )}
-        
+        <JamEmptyState />
         
       </SafeAreaView>
     </LinearGradient>
