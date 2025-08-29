@@ -33,6 +33,29 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Satoshi-Light.ttf",
+            "./assets/fonts/Satoshi-Regular.ttf",
+            "./assets/fonts/Satoshi-Medium.ttf",
+            "./assets/fonts/Satoshi-Bold.ttf",
+            "./assets/fonts/Satoshi-Black.ttf",
+            "./assets/fonts/Satoshi-Italic.ttf",
+            "./assets/fonts/Satoshi-LightItalic.ttf",
+            "./assets/fonts/Satoshi-MediumItalic.ttf",
+            "./assets/fonts/Satoshi-BoldItalic.ttf",
+            "./assets/fonts/Satoshi-BlackItalic.ttf",
+            "./assets/fonts/ClashDisplay-Extralight.ttf",
+            "./assets/fonts/ClashDisplay-Light.ttf",
+            "./assets/fonts/ClashDisplay-Regular.ttf",
+            "./assets/fonts/ClashDisplay-Medium.ttf",
+            "./assets/fonts/ClashDisplay-Semibold.ttf",
+            "./assets/fonts/ClashDisplay-Bold.ttf"
+          ]
+        }
       ]
     ],
     "experiments": {

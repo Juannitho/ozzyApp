@@ -1,45 +1,94 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { FONTS } from '@/lib/customFont/fonts'
+import { colors } from '@/lib/theme'
+import { BlurView } from 'expo-blur'
+import { Tabs } from 'expo-router'
+import { Backpack, BriefcaseBusiness, Home } from 'lucide-react-native'
+import { StyleSheet, View } from 'react-native'
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+const TabIcon = ({ focused, children }: { focused: boolean; children: React.ReactNode }) => (
+  <View style={[styles.iconContainer, focused && styles.activeIconContainer]}>
+    {children}
+  </View>
+)
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function Layout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
+    <Tabs 
+    screenOptions={{
+      animation: 'fade',
+      tabBarBackground: () => (
+        <BlurView 
+          intensity={50} 
+          tint="light" 
+          style={{ 
+            flex: 1,
+            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            borderTopWidth: 0.5,
+            borderTopColor: colors.primitive.purpleAlpha50
+          }}
+        />
+      ),
+      
+      tabBarStyle: {
+        position: 'absolute',
+        paddingTop: 12,
+        height: 104,
+        borderTopWidth: 0,
+        elevation: 0,
+        shadowOpacity: 0,
+      },
+      tabBarActiveTintColor: colors.primitive.greyPurple,
+      tabBarInactiveTintColor: colors.primitive.grey700,
+      tabBarLabelStyle: {
+        fontFamily: FONTS.SATOSHI_BOLD,
+        fontSize: 12,
+        paddingTop: 8,
+      },
+    }}>
+        <Tabs.Screen name="index" options={{ 
+          headerShown: false,
           title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon focused={focused}>
+              <Home color={focused ? colors.primitive.greyPurple : color} size={28} strokeWidth={focused ? 2 : 1.5} />
+            </TabIcon>
+          ),
+        }} />
+        <Tabs.Screen name="jams" options={{ 
+          headerShown: false, 
+          title: 'Jams',
+          href: {
+            pathname: '/jams',
+            params: {}
+          },
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon focused={focused}>
+              <Backpack color={focused ? colors.primitive.greyPurple : color} size={28} strokeWidth={focused ? 2 : 1.5} />
+            </TabIcon>
+          ),
+        }} />
+        <Tabs.Screen name="gigs" options={{ 
+          headerShown: false, 
+          title: 'Gigs',
+          tabBarIcon: ({ color, focused }) => (
+            <TabIcon focused={focused}>
+              <BriefcaseBusiness color={focused ? colors.primitive.greyPurple : color} size={28} strokeWidth={focused ? 2 : 1.5} />
+            </TabIcon>
+          ),
+        }} />
     </Tabs>
-  );
+  )
 }
+
+const styles = StyleSheet.create({
+  iconContainer: {
+    width: 56,
+    height: 40,
+    borderRadius: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  activeIconContainer: {
+    backgroundColor: colors.primitive.purpleAlpha50,
+  },
+})
