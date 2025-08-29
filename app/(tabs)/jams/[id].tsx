@@ -3,12 +3,12 @@ import HeaderTitleIcon from '@/components/ui/Header/HeaderTitleIcon';
 import IconDescriptor from '@/components/ui/IconDescriptor/IconDescriptor';
 import { MeetingPointMap } from '@/components/ui/Map/MeetingPointMap';
 import Tag from '@/components/ui/Tags/Tags';
-import { getJamDetails, joinJam, leaveJam } from '@/lib/supabase/api/jams';
 import { FONTS } from '@/lib/customFont/fonts';
+import { getJamDetails, joinJam, leaveJam } from '@/lib/supabase/api/jams';
 import { colors } from '@/lib/theme';
 import { formatDateTimeRange } from '@/lib/utils/dateTime';
-import { JamDetailsParams, JamDetailed } from '@/types/database.types';
 import { useAuth } from '@/providers/AuthProvider';
+import { JamDetailed, JamDetailsParams } from '@/types/database.types';
 import { useLocalSearchParams } from 'expo-router';
 import { CalendarIcon, Navigation } from 'lucide-react-native';
 import React, { useEffect, useMemo, useState } from 'react';
@@ -261,7 +261,7 @@ export default function JamDetails() {
               variant="outline" 
               size="large" 
               fullWidth 
-              subtitle="You are currently joined"
+              subtitle=""
               disabled={actionLoading}
               onPress={handleLeaveJam}
             />

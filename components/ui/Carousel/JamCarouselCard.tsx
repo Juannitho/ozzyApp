@@ -68,7 +68,7 @@ export default function JamCarouselCard({ jam, onPress }: JamCarouselCardProps) 
         {/* Cost type Badge */}
         <View style={styles.costBadge}>
           <Text style={styles.costBadgeText}>
-            {jam.cost_type === 'Free' ? 'Voluntary Tips' : `$${jam.cost_amount || 'Paid'}`}
+            {jam.category}
           </Text>
         </View>
 
