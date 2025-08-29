@@ -4,7 +4,8 @@ import { StyleSheet, Text, View } from 'react-native'
 export default function Gigs() {
   return (
     <View style={styles.container}>
-      <Text>Gigs</Text>
+      <Text>Comming Soon...</Text>
+      <Text>Next Sprint</Text>
     </View>
   )
 }

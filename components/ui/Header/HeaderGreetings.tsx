@@ -2,22 +2,30 @@ import { FONTS } from '@/lib/customFont/fonts';
 import { colors } from '@/lib/theme';
 import React from 'react';
 import { StyleProp, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import Avatar from '../Avatar/Avatar';
 
 interface HeaderGreetingsProps {
     style?: StyleProp<ViewStyle>;
     userName?: string;
     userLocation?: string;
+    avatarURL?: string;
+    onAvatarPress?: () => void;
 }
 
-export default function HeaderGreetings({ style, userName, userLocation }: HeaderGreetingsProps ) {
+
+export default function HeaderGreetings({ style, userName, userLocation, avatarURL, onAvatarPress }: HeaderGreetingsProps) {
+
     return (
         <View style={[styles.container, style]}>
             <View style={styles.greetingContainer}>
                 <Text style={styles.greetingText}>G'day {userName} 👋🏻</Text>
-                <Text style={styles.greetingSubtitle}>You're in {userLocation}</Text>
+                <Text style={styles.greetingSubtitle}>You're in <Text style={styles.greetingSubtitleHighlight}>{userLocation}</Text></Text>
             </View>
             <View>
-                <Text>User Avatar</Text>
+                <Avatar
+                    imgURL={avatarURL}
+                    onPress={onAvatarPress}
+                />
             </View>
         </View>
     )
@@ -41,5 +49,9 @@ const styles = StyleSheet.create({
     greetingSubtitle: {
         fontSize: 16,
         color: colors.primitive.greyPurple,
+    },
+    greetingSubtitleHighlight: {
+        color: colors.primitive.purple500,
+        fontFamily: FONTS.SATOSHI_BOLD
     },
 })
