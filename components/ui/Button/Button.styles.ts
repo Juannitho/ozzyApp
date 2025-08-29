@@ -37,7 +37,7 @@ export const variantStyles = StyleSheet.create({
   outline: {
     backgroundColor: colors.primitive.transparent,
     borderWidth: 2,
-    borderColor: colors.primary,
+    borderColor: colors.primitive.purple600,
   },
   ghost: {
     backgroundColor: colors.primitive.transparent,
@@ -77,7 +77,7 @@ export const textVariantStyles = StyleSheet.create({
   },
   outline: {
     ...typography.buttonText, 
-    color: colors.primary,
+    color: colors.primitive.purple600,
   },
   ghost: {
     ...typography.buttonText, 

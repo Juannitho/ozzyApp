@@ -281,3 +281,27 @@ export async function getJamParticipants(jamId: string) {
         return { participants: [], error: 'Error getting participants' };
     }
 }
+
+// Get upcoming jams (for carousel)
+export async function getUpcomingJams(limit: number = 10) {
+    try {
+        const today = new Date().toISOString().split('T')[0];
+        
+        const { data, error } = await supabase
+            .from('jams')
+            .select(`
+                *,
+                host:profiles!host_id(*)
+            `)
+            .eq('status', 'active')
+            .gte('jam_date', today)
+            .order('jam_date', { ascending: true })
+            .limit(limit);
+
+        if (error) throw error;
+        return { jams: data || [], error: null };
+    } catch (error) {
+        console.error('Error getting upcoming jams:', error);
+        return { jams: [], error: 'Error getting upcoming jams' };
+    }
+}
